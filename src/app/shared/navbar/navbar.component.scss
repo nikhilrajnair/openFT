@@ -1,0 +1,59 @@
+#navbar {
+
+    overflow: hidden;
+    padding: 30px 10px;
+    transition: 0.4s;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 99;
+    box-shadow: none;
+
+}
+
+#navbar a {
+    float: left;
+    color: black;
+    text-align: center;
+    padding: 10px 20px;
+    text-decoration: none;
+    font-size: 16px;
+    margin-right: 10px;
+
+    &.btn {
+        margin-left: 20px;
+    }
+}
+
+#navbar #logo {
+    padding: 0;
+    transition: 0.4s;
+}
+
+#navbar a:hover {
+    color: #663399;
+}
+
+
+
+#navbar-right {
+    float: right;
+}
+
+/* Add responsiveness - on screens less than 580px wide, display the navbar vetically instead of horizontally */
+@media screen and (max-width: 580px) {
+    #navbar {
+        padding: 20px 10px !important;
+
+    }
+
+    #navbar a {
+        float: none;
+        display: block;
+        text-align: left;
+    }
+
+    #navbar-right {
+        float: none;
+    }
+}

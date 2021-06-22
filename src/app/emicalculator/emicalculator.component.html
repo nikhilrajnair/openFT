@@ -1,0 +1,190 @@
+<div class="ml-100">
+    <div class="row d-flex align-center">
+        <div class="column w-70">
+            <div class="emi-holder">
+                <div class="one">
+                    <h2>Eligibility Calculator</h2>
+                </div>
+                <div class="form-area">
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <span class="left-title">
+                                Monthly Income
+                            </span>
+                            <h4>₹ {{pemi.value | number:'1.0':'en-US'}}</h4>
+                        </div>
+                        <ng5-slider [(value)]="pemi.value" [options]="poptions" (userChangeEnd)="update()">
+                        </ng5-slider>
+                    </div>
+
+
+                    <div class="form-group mt-40">
+                        <div class="col-md-12">
+                            <span class="left-title">
+                                Monthly Expense
+                            </span>
+                            <h4>₹ {{remi.value | number:'1.0':'en-US'}}</h4>
+                        </div>
+                        <ng5-slider [(value)]="remi.value" [options]="roptions" (userChangeEnd)="update()">
+                        </ng5-slider>
+                    </div>
+
+
+                    <div class="form-group mt-40">
+                        <div class="col-md-12">
+                            <div class="left-title">Repayment Tenure</div>
+                            <div class="borderMethod">
+                                <select>
+                                    <option>6 Months</option>
+                                    <option>9 Months</option>
+                                    <option>12 Months</option>
+                                </select>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="form-group mt-40">
+                        <div class="toggle-holder d-flex align-center justify-content">
+                            <span>Do you have any existing loans</span>
+                            <input type="checkbox" id="switch" /><label for="switch">Toggle</label>
+                        </div>
+
+                    </div>
+                    <div class="form-group mt-40">
+                        <span class="left-title">
+                            EMI Of existing loan
+                        </span>
+                        <input type="text" value="₹1,50,000" placeholder="EMI Of existing loan" />
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="column w-30">
+            <div class="well">
+                <div class="jusify-center">
+                    <h5 class="">
+                        Loan Amount
+                    </h5>
+                    <span class="result">
+                        ₹{{result.emi || "--"}}
+                    </span>
+                </div>
+                <div>
+                    <h5>
+                        Your EMI will be
+                    </h5>
+                    <span class="result">
+                        ₹{{result.interest || "--"}}
+                    </span>
+                </div>
+                <a href="#" class="btn btn-money">Get Money</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- <div class="">
+
+    <div class="row">
+        <div class="column w-60">
+            <div class="emi-holder">
+                <div class="form-group">
+                    <div class="col-md-12">
+                        <span class="left-title">
+                            Monthly Income
+                        </span>
+                        <h4>150000</h4>
+                        <input type="text" style="width:44%;float:right;" class="form-control" (blur)="tbupdate(0)"
+                            [(ngModel)]="query.amount" placeholder="Loan Amount" name="pemi.highValue" />
+                    </div>
+                    <ng5-slider [(value)]="pemi.value" [options]="poptions" (userChangeEnd)="update()">
+                    </ng5-slider>
+                </div>
+
+
+                <div class="form-group">
+                    <div class="col-md-12">
+                        <span class="left-title">
+                            Monthly Expense
+                        </span>
+                        <h4>150000</h4>
+                        <input type="text" style="width:44%;float:right;" class="form-control" (blur)="tbupdate(1)"
+                            [(ngModel)]="query.interest" placeholder="Interest Rate" name="remi.highValue" />
+                    </div>
+                    <ng5-slider [(value)]="remi.value" [options]="roptions" (userChangeEnd)="update()">
+                    </ng5-slider>
+                </div>
+
+
+                <div class="form-group">
+                    <div class="col-md-10">
+                        <span class="left-title">Repayment Tenure</span>
+                        <input type="text" *ngIf="yrToggel" class="form-control" (blur)="tbupdate(2)"
+                            placeholder="Loan Tenure in Yr" [(ngModel)]="query.tenureYr" style="width:30%;float:right;">
+                        <input type="text" *ngIf="!yrToggel" class="form-control" (blur)="tbupdate(3)"
+                            placeholder="Loan Tenure in Mo" [(ngModel)]="query.tenureMo" style="width:30%;float:right;">
+                    </div>
+                    <div class="col-md-2">
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-secondary" [ngClass]="{'active':yrToggel}"
+                                (click)="yrToggel=true;update()" type="button">Yr</button>
+                            <button class="btn btn-outline-secondary" [ngClass]="{'active':!yrToggel}"
+                                (click)="yrToggel=false;update()" type="button">Mo</button>
+                        </div>
+                    </div>
+                    <ng5-slider *ngIf="yrToggel" [(value)]="temi.value" [options]="toptions" (userChangeEnd)="update()">
+                    </ng5-slider>
+                    <ng5-slider *ngIf="!yrToggel" [(value)]="memi.value" [options]="moptions"
+                        (userChangeEnd)="update()">
+                    </ng5-slider>
+                </div>
+            </div>
+        </div>
+        <div class="column w-40">
+            <div class="well">
+
+                <div class="jusify-center">
+                    <h5>
+                        Loan EMI
+                    </h5>
+                    <span class="result">
+                        {{result.emi || "--"}}
+                    </span>
+                </div>
+
+
+                <div>
+                    <h5>
+                        Total Interest Payable
+                    </h5>
+                    <span class="result">
+                        {{result.interest || "--"}}
+                    </span>
+                </div>
+
+                <div>
+                    <h5>
+                        Total Payment
+                    </h5>
+                    <h6>
+                        (Principal + Interest)
+                    </h6>
+                    <span class="result">
+                        {{result.total || "--"}}
+                    </span>
+                </div>
+
+
+
+            </div>
+        </div>
+
+    </div>
+
+
+    
+</div> -->
